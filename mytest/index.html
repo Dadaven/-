@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Frist Vue</title>
+    <style>
+        .active{
+            background: #0000cc;
+        }
+        .card{
+            background: #1db34f;
+            width: 200px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .m_panel{
+            max-width: 300px;
+            border:1px solid #fb8532;
+
+            margin-bottom: 15px;
+        }
+        .m_panel > * {
+            padding: 15px;
+            max-width: 300px;
+        }
+        .m_panel .m_foot{
+            border-top:1px solid #fb8532;
+        }
+        .m_panel .m_title{
+            border-bottom:1px solid #fb8532;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <br><br>
+    <center>
+    <h1>vue.js学习笔记</h1>
+        <br><br>
+
+    </center>
+    <h2>v-model and v-show</h2>
+    <div>
+    <input type="text" v-model.trim="name"><!--取消空格-->
+    <span  v-show="name">你的名字是：{{name}}</span><br>
+    </div>
+    <div>
+    <input type="text" v-model.number="age">
+        <span v-show="age">你的年龄是：{{age}}</span><br>
+    </div>
+    <h2>v-for</h2>
+    <ul>
+        <li v-for="food in foodList">名称：{{food.name}}   价格：{{food.price}}</li>
+    </ul>
+    <h2>v-bind(动态绑定)</h2>
+    <img v-bind:src="img">
+    <a v-bind:class="{active: isActive}" v-bind:href="url">点我</a>
+
+
+
+    <h2>v-on(事件)</h2>
+    <button v-on ="{mouseenter: onEnter ,mouseleave:onLeave}"   v-on:click="onClick">点我</button>
+    <form v-on:keyup.enter="onEnter1"  v-on:submit="onSubmit($event)">
+        <input type="text">
+        <button >提交</button>
+    </form>
+
+    <br><br>
+    <h2>v-model(其他）</h2>
+    性别：
+    <label>男<input v-model="sex" value="man" type="radio"></label>
+    <label>女<input v-model="sex" value="women" type="radio"></label>
+    <br>爱好：
+    <label>唱歌<input v-model="hobby" value="sing" type="checkbox"></label>
+    <label>跳舞<input v-model="hobby" value="dance" type="checkbox"></label>
+     {{hobby}}
+    <div>出身地
+    <select v-model="fromselect">
+        <option value="1">山西</option>
+        <option value="2">天津</option>
+    </select>
+    </div>
+    <div>预期工作地点
+        <select v-model="dest" multiple>
+            <option value="1">山西</option>
+            <option value="2">天津</option>
+        </select>
+    </div>
+    <br>
+    <h2>if-else(控制流)</h2>
+    <div v-if="role=='admin'"><!--判断-->
+     管理员好！
+    </div >
+    <div v-else>无权限</div>
+    <br><br>
+
+
+
+
+    <h2>计算属性</h2>
+    <div>
+        <table border="1">
+            <thead>
+            <th>学科</th>
+            <th>分数</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>数学</td>
+                <td><input type="text" v-model.number="math"></td>
+            </tr>
+            <tr>
+                <td>英语</td>
+                <td><input type="text" v-model.number="english"></td>
+            </tr>
+            <tr>
+                <td>软工</td>
+                <td><input type="text" v-model.number="software"></td>
+            </tr>
+            <tr>
+                <td>总分</td>
+                <td>{{sum}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <alert msg="i love you"></alert><!--传参-->
+    <br>
+    <like></like>
+
+    <br><br><h2>过滤器</h2><br>
+    <input type="text" v-model="price">{{price | currency('USD')}}
+
+    <br><br><br>
+    <h2>自定义标签属性</h2>
+    <div v-pin.bottom.left="card1.pinned"  class="card">
+        <button @click="card1.pinned=!card1.pinned">钉住/取消</button>
+        berugheirhgerigheroigheor</div>
+    <div v-pin:true.bottom.right="card2.pinned"   class="card">
+        <button @click="card2.pinned=!card2.pinned">钉住/取消</button></div>
+
+
+    <br><br>
+    <h2>混合mixins(代码整合)</h2>
+    <tooltip></tooltip>
+    <popup></popup>
+
+
+    <br><br>
+    <h2>Slot(插槽)</h2>
+    <panel><div slot="title">11111111111</div></panel>
+    <panel><div slot="content">2222222222</div></panel>
+    <panel><div slot="foot">3333333</div></panel>
+
+
+
+
+</div>
+<br><br>
+<center><h4><span>----未完待续----</span></h4></center>
+
+
+<script src="../lib/vue.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
